@@ -30,7 +30,7 @@ class Item(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders')
-    items = models.ManyToManyField(Item)
+    items = models.ManyToManyField(Item, related_name='order_items')
     payment_id = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)

@@ -17,7 +17,8 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'items', 'payment_id', 'paid', 'total_price', 'created_at')
+    filter_horizontal = ('items',)
+    list_display = ('id', 'user', 'payment_id', 'paid', 'total_price', 'created_at')
     list_filter = ('id', 'user', 'paid', 'total_price', 'created_at')
 
 
