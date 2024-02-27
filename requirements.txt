@@ -1,0 +1,8 @@
+asgiref==3.7.2
+Django==5.0.2
+sqlparse==0.4.4
+typing_extensions==4.10.0
+djangorestframework==3.14.0
+black==24.2.0
+python-dotenv==1.0.1
+stripe>=7.0.0
