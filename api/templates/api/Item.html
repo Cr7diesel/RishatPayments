@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Buy now {{ item.name }}</title>
+</head>
+<body>
+    <h1>{{ item.name }}</h1>
+    <p>{{ item.description }}</p>
+    <p>{{ item.price }}</p>
+    <button onclick="buyItem({{ item.id }})">Buy</button>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        function buyItem(itemId) {
+            fetch(`http://127.0.0.1:8000/buy/${itemId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const stripe = Stripe('{{ publishable_key }}');
+                    stripe.redirectToCheckout({ sessionId: data.session_id });
+                });
+        }
+    </script>
+</body>
+</html>

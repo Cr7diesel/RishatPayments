@@ -17,6 +17,15 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = '__all__'
 
+    def create(self, validated_data):
+        return Item.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+            instance.save()
+        return instance
+
 
 class OrderSerializer(serializers.ModelSerializer):
 
