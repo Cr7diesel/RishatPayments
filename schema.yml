@@ -1,0 +1,363 @@
+openapi: 3.0.3
+info:
+  title: RishatPayments API
+  version: 1.0.0
+  description: api for RishatPayments
+paths:
+  /buy/{id}/:
+    get:
+      operationId: buy_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - buy
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /createitem/:
+    post:
+      operationId: createitem_create
+      tags:
+      - createitem
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /createorder/:
+    post:
+      operationId: create_order
+      description: Create a new order
+      tags:
+      - createorder
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: Created
+        '403':
+          description: Credentials weren't provided
+        '404':
+          description: Order does not exist
+  /deleteitem/{id}/:
+    delete:
+      operationId: deleteitem_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deleteitem
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /deleteorder/{id}/:
+    delete:
+      operationId: delete_order
+      description: Delete a order
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - deleteorder
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: Created
+        '400':
+          description: No id
+        '403':
+          description: Credentials weren't provided
+        '404':
+          description: Order does not exist
+  /getallitems/:
+    get:
+      operationId: getallitems_retrieve
+      tags:
+      - getallitems
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /getallorders/:
+    get:
+      operationId: get_all_orders
+      description: Get all orders
+      tags:
+      - getallorders
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: Success
+        '403':
+          description: Credentials weren't provided
+        '404':
+          description: Order does not exist
+  /getoneitem/{id}/:
+    get:
+      operationId: getoneitem_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - getoneitem
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /getoneorder/{id}/:
+    get:
+      operationId: get_one_order
+      description: Get one order
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - getoneorder
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: Success
+        '400':
+          description: No id
+        '403':
+          description: Credentials weren't provided
+        '404':
+          description: Order does not exist
+  /item/{id}/:
+    get:
+      operationId: item_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - item
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /updateitem/{id}/:
+    put:
+      operationId: updateitem_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - updateitem
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /updateorder/{id}/:
+    put:
+      operationId: update_order
+      description: Update order
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - updateorder
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: Success
+        '400':
+          description: No id
+        '403':
+          description: Credentials weren't provided
+        '404':
+          description: Order does not exist
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название товара
+          maxLength: 255
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
+          title: Стоимость товара
+        description:
+          type: string
+          title: Описание товара
+      required:
+      - description
+      - id
+      - name
+      - price
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          readOnly: true
+        discount:
+          type: integer
+        tax:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,2}(?:\.\d{0,1})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Дата создания заказа
+        paid:
+          type: boolean
+          title: Статус заказа
+        total_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,6}(?:\.\d{0,2})?$
+          title: Стоимость товаров
+      required:
+      - created_at
+      - discount
+      - id
+      - items
+      - tax
+      - total_price
+      - user
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Имя пользователя
+          description: Обязательное поле. Не более 150 символов. Только буквы, цифры
+            и символы @/./+/-/_.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Адрес электронной почты
+          maxLength: 254
+      required:
+      - id
+      - username
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

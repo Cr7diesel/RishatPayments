@@ -16,7 +16,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         function buyItem(itemId) {
-            fetch(`http://127.0.0.1:8000/buy/${itemId}`)
+            fetch(`http://0.0.0.0:8000/buy/${itemId}`)
                 .then(response => response.json())
                 .then(data => {
                     const stripe = Stripe('{{ publishable_key }}');

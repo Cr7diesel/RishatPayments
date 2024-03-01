@@ -18,6 +18,7 @@ load_dotenv()
 
 
 class CreateItemView(APIView):
+    serializer_class = ItemSerializer
     @extend_schema()
     def post(self, request):
         try:
@@ -30,6 +31,7 @@ class CreateItemView(APIView):
 
 
 class GetAllItemView(APIView):
+    serializer_class = ItemSerializer
 
     @extend_schema()
     def get(self, request):
@@ -44,6 +46,7 @@ class GetAllItemView(APIView):
 
 
 class GetItemView(APIView):
+    serializer_class = ItemSerializer
     @extend_schema()
     def get(self, request, *args, **kwargs):
         try:
@@ -60,6 +63,7 @@ class GetItemView(APIView):
 
 
 class UpdateItemView(APIView):
+    serializer_class = ItemSerializer
     @extend_schema()
     def put(self, request, *args, **kwargs):
         try:
@@ -78,6 +82,7 @@ class UpdateItemView(APIView):
 
 
 class DeleteItemView(APIView):
+    serializer_class = ItemSerializer
     @extend_schema()
     def delete(self, request, *args, **kwargs):
         try:
@@ -142,7 +147,7 @@ class GetItemAPiView(APIView):
 
 
 class CreateOrderView(APIView):
-
+    serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
     @extend_schema(
@@ -168,7 +173,7 @@ class CreateOrderView(APIView):
 
 
 class GetAllOrdersApiView(APIView):
-
+    serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
     @extend_schema(
@@ -195,7 +200,7 @@ class GetAllOrdersApiView(APIView):
 
 
 class GetOrderView(APIView):
-
+    serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
     @extend_schema(
@@ -226,7 +231,7 @@ class GetOrderView(APIView):
 
 
 class UpdateOrderView(APIView):
-
+    serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
     @extend_schema(
@@ -259,6 +264,7 @@ class UpdateOrderView(APIView):
 
 
 class DeleteOrderView(APIView):
+    serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
     @extend_schema(
