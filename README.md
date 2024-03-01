@@ -6,13 +6,9 @@ Web приложение RishatPayments:
 
 Запуск приложения:
 
-    Клонируйте репозиторий:
+    Клонируйте репозиторий: git clone https://github.com/Cr7diesel/RishatPayments.git
 
-git clone https://github.com/Cr7diesel/RishatPayments.git
-
-    Перейдите в склонированный каталог проекта:
-
-git cd RishatPayments
+    Перейдите в склонированный каталог проекта
 
 Создание переменной окружения:
 
@@ -21,14 +17,11 @@ git cd RishatPayments
 Запуск приложения:
 
     Откройте терминал => перейдите в каталог проекта =>
-    запустите приложение с помощью команды:
+    запустите приложение с помощью команды: docker-compose up --build
 
-docker-compose up --build
 
 Создание суперпользователя:
 
-    Выполните команду:
-
-docker-compose run payments python3 manage.py createsuperuser 
+    Выполните команду: docker-compose run payments python3 manage.py createsuperuser
 
     Введите все необходимые данные

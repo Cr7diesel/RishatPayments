@@ -7,15 +7,15 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
-        read_only_fields = ('id',)
+        fields = ("id", "username", "email")
+        read_only_fields = ("id",)
 
 
 class ItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = '__all__'
+        fields = "__all__"
 
     def create(self, validated_data):
         return Item.objects.create(**validated_data)
@@ -31,12 +31,14 @@ class OrderSerializer(serializers.ModelSerializer):
 
     user = UserSerializer(read_only=True)
     items = ItemSerializer(read_only=True, many=True)
-    discount = serializers.IntegerField(source='discount.percent')
-    tax = serializers.DecimalField(source='tax.tax_rate', max_digits=3, decimal_places=1)
+    discount = serializers.IntegerField(source="discount.percent")
+    tax = serializers.DecimalField(
+        source="tax.tax_rate", max_digits=3, decimal_places=1
+    )
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = "__all__"
 
     def create(self, validated_data):
         return Order.objects.create(**validated_data)
@@ -54,7 +56,7 @@ class DiscountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discount
-        fields = '__all__'
+        fields = "__all__"
 
 
 class TaxSerializer(serializers.ModelSerializer):
@@ -63,4 +65,4 @@ class TaxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tax
-        fields = '__all__'
+        fields = "__all__"
