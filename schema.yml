@@ -28,6 +28,18 @@ paths:
       operationId: createitem_create
       tags:
       - createitem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Item'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Item'
+        required: true
       security:
       - basicAuth: []
       - cookieAuth: []
@@ -35,13 +47,29 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+          description: ''
   /createorder/:
     post:
       operationId: create_order
       description: Create a new order
       tags:
       - createorder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
       security:
       - basicAuth: []
       - cookieAuth: []
@@ -119,7 +147,11 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+          description: ''
   /getallorders/:
     get:
       operationId: get_all_orders
@@ -161,7 +193,11 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+          description: ''
   /getoneorder/{id}/:
     get:
       operationId: get_one_order
@@ -223,6 +259,18 @@ paths:
         required: true
       tags:
       - updateitem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Item'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Item'
+        required: true
       security:
       - basicAuth: []
       - cookieAuth: []
@@ -230,7 +278,11 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+          description: ''
   /updateorder/{id}/:
     put:
       operationId: update_order
@@ -243,6 +295,18 @@ paths:
         required: true
       tags:
       - updateorder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
       security:
       - basicAuth: []
       - cookieAuth: []

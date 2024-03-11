@@ -70,9 +70,6 @@ class Order(models.Model):
 
 class Discount(models.Model):
 
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="discounts", verbose_name="Скидка"
-    )
     percent = models.PositiveIntegerField(default=0, verbose_name="Процент скидки")
 
     def __str__(self):
@@ -84,9 +81,7 @@ class Discount(models.Model):
 
 
 class Tax(models.Model):
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="taxes", verbose_name="Налог"
-    )
+
     tax_rate = models.DecimalField(
         max_digits=3, decimal_places=1, verbose_name="Налоговая ставка в процентах"
     )

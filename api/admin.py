@@ -40,11 +40,11 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
-    list_display = ("id", "order", "percent")
+    list_display = ("id", "percent")
     list_filter = ("id", "percent")
 
 
 @admin.register(Tax)
 class TaxAdmin(admin.ModelAdmin):
-    list_display = ("id", "order", "tax_rate")
+    list_display = ("id", "tax_rate")
     list_filter = ("id", "tax_rate")
